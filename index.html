@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Kinshi Capital</title>
+	<meta name="description" content="Kinshi Capital">
+	<meta name="theme-color" content="#FFFFFF">
+	<link rel="icon" href="favicon.ico" sizes="any">
+	<link rel="icon" href="icon.svg" type="image/svg+xml">
+	<link rel="apple-touch-icon" href="apple-icon.png">
+	<style>
+		/* Kinshi placeholder: the wordmark on a lime chalk scribble, three mushrooms drifting at the edges. */
+		:root{
+			--paper: #FFFFFF;
+			--ink: #00200F;
+		}
+
+		html, body{ margin: 0; height: 100%; background: var(--paper); }
+
+		body{
+			overflow: hidden;
+			display: grid;
+			place-items: center;
+		}
+
+		.stage{
+			position: relative;
+			width: 100vw;
+			height: 100vh;
+			height: 100dvh;
+			display: grid;
+			place-items: center;
+		}
+
+		.scribble{
+			position: absolute;
+			width: min(92vmin, 820px);
+			aspect-ratio: 1;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%) rotate(-8deg);
+			pointer-events: none;
+			user-select: none;
+		}
+
+		.logo{
+			position: relative;
+			width: clamp(180px, 26vmin, 300px);
+			height: auto;
+		}
+
+		.mushroom{
+			position: absolute;
+			width: var(--size);
+			aspect-ratio: 1;
+			background: url(images/mushroom.png) no-repeat center / contain;
+			transform: rotate(var(--turn));
+			pointer-events: none;
+		}
+		.m1{ --size: clamp(64px, 11vmin, 120px); --turn: 28deg;  top: 12%;   left: 9%; }
+		.m2{ --size: clamp(84px, 15vmin, 160px); --turn: -18deg; bottom: 9%; right: 10%; }
+		.m3{ --size: clamp(48px, 8vmin, 84px);   --turn: 150deg; top: 18%;   right: 18%; }
+
+		@media (prefers-reduced-motion: no-preference){
+			.mushroom{ animation: sway 7s ease-in-out infinite alternate; }
+			.m2{ animation-duration: 9s; animation-delay: -3s; }
+			.m3{ animation-duration: 6s; animation-delay: -1.5s; }
+			.logo, .scribble{ animation: arrive 1.1s cubic-bezier(.2,.7,.2,1) both; }
+			.logo{ animation-delay: .25s; }
+		}
+		@keyframes sway{
+			from{ transform: rotate(var(--turn)) translateY(0); }
+			to{ transform: rotate(calc(var(--turn) + 10deg)) translateY(-10px); }
+		}
+		@keyframes arrive{
+			from{ opacity: 0; scale: .96; }
+			to{ opacity: 1; scale: 1; }
+		}
+	</style>
+</head>
+<body>
+	<main class="stage">
+		<img class="scribble" src="images/scribble.webp" alt="" width="1400" height="1400">
+		<span class="mushroom m1" aria-hidden="true"></span>
+		<span class="mushroom m2" aria-hidden="true"></span>
+		<span class="mushroom m3" aria-hidden="true"></span>
+		<img class="logo" src="images/logotype.svg" alt="Kinshi Capital" width="160" height="46">
+	</main>
+</body>
+</html>
